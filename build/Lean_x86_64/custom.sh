@@ -40,7 +40,7 @@ sed -i 's#192.168.1.1#10.0.0.1#g' $NET                                          
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' $ZZZ                                             # 取消系统默认密码
 sed -i "s/OpenWrt /ONE build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ              # 增加自己个性名称
 # sed -i "/uci commit luci/i\uci set luci.main.mediaurlbase=/luci-static/neobird" $ZZZ        # 设置默认主题(如果编译可会自动修改默认主题的，有可能会失效)
-sed -i 's#localtime  = os.date()#localtime  = os.date("%Y年%m月%d日") .. " " .. translate(os.date("%A")) .. " " .. os.date("%X")#g' package/lean/autocore/files/*/index.htm               # 修改默认时间格式
+sed -i 's#localtime  = os.date()#localtime  = os.date("%Y年%m月%d日") .. " " .. translate(os.date("%A")) .. " " .. os.date("%X")#g' package/emortal/autocore/files/*/index.htm               # 修改默认时间格式
 
 # ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● #
 sed -i 's#%D %V, %C#%D %V, %C TZP001_x86_64#g' package/base-files/files/etc/banner               # 自定义banner显示
@@ -229,7 +229,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns=y #smartdns服务器
 # CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardhome
 CONFIG_PACKAGE_luci-app-poweroff=y 					#关机（增加关机功能）
-CONFIG_PACKAGE_luci-app-argon-config=y 				#argon主题设置
+CONFIG_PACKAGE_luci-app-argon-config=y 					#argon主题设置
 # CONFIG_PACKAGE_luci-app-autotimeset=y #定时重启系统，网络
 
 EOF
@@ -261,7 +261,7 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adbyby-plus=n #adbyby去广告
 CONFIG_PACKAGE_luci-app-webadmin=n #Web管理页面设置
-#CONFIG_DEFAULT_luci-app-vlmcsd=y   				#KMS激活服务器
+#CONFIG_DEFAULT_luci-app-vlmcsd=y   					#KMS激活服务器
 # CONFIG_PACKAGE_luci-app-filetransfer=y 			#系统-文件传输
 # CONFIG_PACKAGE_luci-app-autoreboot=n #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y 						#通用即插即用UPnP(端口自动转发)
@@ -277,60 +277,60 @@ CONFIG_PACKAGE_luci-app-dockerman=y					#docker管理
 CONFIG_PACKAGE_luci-app-homebox=y					#内网测速
 CONFIG_PACKAGE_luci-app-netdata=y					#Netdata图形化实时监控
 CONFIG_PACKAGE_luci-app-pushbot=y					#路由器信息推送
-CONFIG_PACKAGE_luci-app-quickstart=y				#假装istoreos
+CONFIG_PACKAGE_luci-app-quickstart=y					#假装istoreos
 CONFIG_PACKAGE_luci-app-routerdog=y					#路由狗，app管理
-CONFIG_PACKAGE_luci-app-unblockneteasemusic=y		#解锁网易云灰色音乐
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=y				#解锁网易云灰色音乐
 CONFIG_PACKAGE_luci-app-airplay2=y					#AirPlay无损音乐推流(安卓+IOS)
 CONFIG_PACKAGE_luci-app-diskman=y					#硬盘管理
 CONFIG_PACKAGE_luci-app-hd-idle=y					#硬盘休眠
-CONFIG_PACKAGE_autosamba=y							#自动samba
-CONFIG_PACKAGE_automount=y							#自动挂载
+CONFIG_PACKAGE_autosamba=y						#自动samba
+CONFIG_PACKAGE_automount=y						#自动挂载
 CONFIG_PACKAGE_luci-app-ttyd=y						#终端
 
-CONFIG_PACKAGE_luci-app-control-webrestriction=y	#上网控制
-CONFIG_PACKAGE_luci-app-control-weburl=y			#上网控制
-CONFIG_PACKAGE_luci-app-timecontrol=y				#上网控制	
+CONFIG_PACKAGE_luci-app-control-webrestriction=y			#上网控制
+CONFIG_PACKAGE_luci-app-control-weburl=y				#上网控制
+CONFIG_PACKAGE_luci-app-timecontrol=y					#上网控制	
 CONFIG_PACKAGE_luci-app-ddnsto=y	 				#ddnsto域名映射
 CONFIG_PACKAGE_luci-app-ddns=y	 					#动态域名解析
-CONFIG_PACKAGE_luci-app-lucky=y						#####################	
-													#	端口转发			#
-													#	动态域名(DDNS)	#
-													#	Web服务			#
-													#	Stun内网穿透		#
-													#	网络唤醒			#
-													#	计划任务			#
-													#	ACME自动证书		#
-													#	网络存储			#
-													#####################
+CONFIG_PACKAGE_luci-app-lucky=y						#########################	
+									#	端口转发	#
+									#	动态域名(DDNS)	#
+									#	Web服务		#
+									#	Stun内网穿透	#
+									#	网络唤醒	#
+									#	计划任务	#
+									#	ACME自动证书 	#
+									#	网络存储	#
+									#########################
 CONFIG_PACKAGE_luci-app-unishare=y					#统一文件共享
-CONFIG_PACKAGE_luci-app-mjpg-streamer=y				#USB摄像头的一个驱动程序，使得那些二手出不掉、扔了又可惜的老款摄像头，变成网络摄像头，废物再利用
-CONFIG_PACKAGE_luci-app-usb-printer=y 				#USB打印机
+CONFIG_PACKAGE_luci-app-mjpg-streamer=y					#USB摄像头的一个驱动程序，使得那些二手出不掉、扔了又可惜的老款摄像头，变成网络摄像头，废物再利用
+CONFIG_PACKAGE_luci-app-usb-printer=y 					#USB打印机
 
 
-CONFIG_PACKAGE_luci-app-haproxy-tcp=n #Haproxy负载均衡
-CONFIG_PACKAGE_luci-app-transmission=n #Transmission离线下载
-CONFIG_PACKAGE_luci-app-qbittorrent=n #qBittorrent离线下载
-CONFIG_PACKAGE_luci-app-amule=n #电驴离线下载
-CONFIG_PACKAGE_luci-app-xlnetacc=n #迅雷快鸟
-CONFIG_PACKAGE_luci-app-unblockmusic=n #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-music-remote-center=n #PCHiFi数字转盘遥控
-CONFIG_PACKAGE_luci-app-sqm=n #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-jd-dailybonus=n #京东签到服务
-CONFIG_PACKAGE_luci-app-uugamebooster=n #UU游戏加速器
-CONFIG_PACKAGE_luci-app-wireguard=n #wireguard端
+# CONFIG_PACKAGE_luci-app-haproxy-tcp=n #Haproxy负载均衡
+# CONFIG_PACKAGE_luci-app-transmission=n #Transmission离线下载
+# CONFIG_PACKAGE_luci-app-qbittorrent=n #qBittorrent离线下载
+# CONFIG_PACKAGE_luci-app-amule=n #电驴离线下载
+# CONFIG_PACKAGE_luci-app-xlnetacc=n #迅雷快鸟
+# CONFIG_PACKAGE_luci-app-unblockmusic=n #解锁网易云灰色歌曲
+# CONFIG_PACKAGE_luci-app-music-remote-center=n #PCHiFi数字转盘遥控
+# CONFIG_PACKAGE_luci-app-sqm=n #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-jd-dailybonus=n #京东签到服务
+# CONFIG_PACKAGE_luci-app-uugamebooster=n #UU游戏加速器
+# CONFIG_PACKAGE_luci-app-wireguard=n #wireguard端
 #
 # VPN相关插件(禁用):
 #
 CONFIG_PACKAGE_luci-app-v2ray-server=n #V2ray服务器
 CONFIG_PACKAGE_luci-app-pptp-server=n #PPTP VPN 服务器
 CONFIG_PACKAGE_luci-app-ipsec-vpnd=n #ipsec VPN服务
-CONFIG_PACKAGE_luci-app-openvpn-server=n 			#配合lucky使用IPv6公网访问家庭网络
+CONFIG_PACKAGE_luci-app-openvpn-server=y 				#配合lucky使用IPv6公网访问家庭网络
 CONFIG_PACKAGE_luci-app-softethervpn=n #SoftEtherVPN服务器
 #
 # 文件共享相关(禁用):
 #
 CONFIG_PACKAGE_luci-app-minidlna=y 					#miniDLNA服务
-# CONFIG_PACKAGE_luci-app-vsftpd=n #FTP 服务器
+CONFIG_PACKAGE_luci-app-vsftpd=y					#FTP 服务器
 # CONFIG_PACKAGE_luci-app-samba=n #网络共享
 # CONFIG_PACKAGE_samba36-server=n #网络共享
 EOF
