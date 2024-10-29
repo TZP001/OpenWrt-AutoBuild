@@ -23,7 +23,7 @@ rm -rf feeds/luci/themes/luci-theme-argon
 
 # 自定义定制选项
 NET="package/base-files/files/bin/config_generate"
-ZZZ="package/emortal/default-settings/files/zzz-default-settings"
+ZZZ="package/emortal/default-settings/files/99-default-settings"
 # 读取内核版本
 # KERNEL_PATCHVER=$(cat target/linux/x86/Makefile|grep KERNEL_PATCHVER | sed 's/^.\{17\}//g')
 # KERNEL_TESTING_PATCHVER=$(cat target/linux/x86/Makefile|grep KERNEL_TESTING_PATCHVER | sed 's/^.\{25\}//g')
@@ -37,8 +37,8 @@ ZZZ="package/emortal/default-settings/files/zzz-default-settings"
 #
 sed -i 's#192.168.1.1#10.0.0.1#g' $NET                                                    # 定制默认IP
 # sed -i 's#OpenWrt#OpenWrt-X86#g' $NET                                                     # 修改默认名称为OpenWrt-X86
-sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' $ZZZ                                             # 取消系统默认密码
-sed -i "s/OpenWrt /ONE build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ              # 增加自己个性名称
+# sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' $ZZZ                                             # 取消系统默认密码
+# sed -i "s/OpenWrt /ONE build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ              # 增加自己个性名称
 # sed -i "/uci commit luci/i\uci set luci.main.mediaurlbase=/luci-static/neobird" $ZZZ        # 设置默认主题(如果编译可会自动修改默认主题的，有可能会失效)
 sed -i 's#localtime  = os.date()#localtime  = os.date("%Y年%m月%d日") .. " " .. translate(os.date("%A")) .. " " .. os.date("%X")#g' package/emortal/autocore/files/*/index.htm               # 修改默认时间格式
 
@@ -278,6 +278,7 @@ CONFIG_PACKAGE_luci-app-homebox=y					#内网测速
 CONFIG_PACKAGE_luci-app-netdata=y					#Netdata图形化实时监控
 CONFIG_PACKAGE_luci-app-pushbot=y					#路由器信息推送
 CONFIG_PACKAGE_luci-app-quickstart=y					#假装istoreos
+CONFIG_PACKAGE_luci-app-istorex=y					#假装istoreos
 CONFIG_PACKAGE_luci-app-routerdog=y					#路由狗，app管理
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y				#解锁网易云灰色音乐
 CONFIG_PACKAGE_luci-app-airplay2=y					#AirPlay无损音乐推流(安卓+IOS)
