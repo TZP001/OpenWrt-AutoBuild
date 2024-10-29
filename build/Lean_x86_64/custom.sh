@@ -238,6 +238,9 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-ssr-plus=y					#出国
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_SagerNet_Core is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=n
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=n
+
 EOF
 
 # Passwall插件:
