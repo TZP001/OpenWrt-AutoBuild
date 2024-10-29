@@ -287,9 +287,8 @@ CONFIG_PACKAGE_autosamba=y						#自动samba
 CONFIG_PACKAGE_automount=y						#自动挂载
 CONFIG_PACKAGE_luci-app-ttyd=y						#终端
 
-CONFIG_PACKAGE_luci-app-control-webrestriction=y			#上网控制
-CONFIG_PACKAGE_luci-app-control-weburl=y				#上网控制
-CONFIG_PACKAGE_luci-app-timecontrol=y					#上网控制	
+# CONFIG_PACKAGE_luci-app-control-webrestriction=y			#上网控制
+# CONFIG_PACKAGE_luci-app-control-weburl=y				#上网控制
 CONFIG_PACKAGE_luci-app-ddnsto=y	 				#ddnsto域名映射
 CONFIG_PACKAGE_luci-app-ddns=y	 					#动态域名解析
 CONFIG_PACKAGE_luci-app-lucky=y						#########################	
