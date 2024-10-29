@@ -52,7 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lean_x86_64,Lean_x86_64_Long]  #[Lean_x86_64,Lean_x86_64_Long]
+        target: [Lean_x86_64]  #[Lean_x86_64,Lean_x86_64_Long]
 
     steps:
     - name: 检查文件
@@ -216,7 +216,7 @@ jobs:
         echo "=========================================="
         echo
 
-        ZZZ="package/lean/default-settings/files/zzz-default-settings"
+        ZZZ="package/emortal/default-settings/files/zzz-default-settings"
         echo "DISTRIB_REVISION=$(cat $ZZZ|grep DISTRIB_REVISION= | sed 's/^.\{24\}//g' | sed 's/.\{26\}$//')" >> $GITHUB_ENV
         echo "KERNEL_PATCHVER=$(cat target/linux/x86/Makefile|grep KERNEL_PATCHVER | sed 's/^.\{17\}//g')" >> $GITHUB_ENV
         echo "	    当前编译版本：$(cat $ZZZ|grep DISTRIB_REVISION= | sed 's/^.\{24\}//g' | sed 's/.\{26\}$//')"
