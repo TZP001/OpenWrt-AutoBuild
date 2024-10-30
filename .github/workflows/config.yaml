@@ -206,7 +206,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: OpenWrt_firmware_${{matrix.target}}_${{ env.FILE_TIME }}
-        path: ./artifact/.config
+        path: .config
 
     - name: 自动发布固件到 Releases
       uses: ncipollo/release-action@main
@@ -215,5 +215,5 @@ jobs:
         name: ${{ env.FILE_TIME1 }} 「 ${{ env.FIRMWARE_MESSAGE }} 」
         tag: ${{ env.FILE_TIME2 }}-${{matrix.target}}-${{ env.DISTRIB_REVISION }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ./artifact/*
+        artifacts: .config
 
