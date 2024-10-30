@@ -188,6 +188,9 @@ jobs:
 
         echo "写入配置文件..."
         mv ${WORKPATH}/$CONFIG_FILE .config
+        echo "-----------开始-----------"
+        cat ./.config
+        echo "-----------结束-----------"
         make defconfig
 
     - name: SSH远程连接服务器
