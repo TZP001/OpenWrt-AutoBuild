@@ -200,9 +200,20 @@ jobs:
         echo
         echo
         cat .config
-        echo "====================整理固件======================"
+
+    - name: 整理固件文件
+      id: organizer
+      run: |
         mkdir -p ./artifact/
         cp -rf openwrt/.config ./artifact/${{matrix.target}}.config
+
+        echo "编译完成时间..."
+        START_SECONDS=${{ env.START_SECONDS }}
+        END_TIME=`date +'%Y-%m-%d %H:%M:%S'`
+        END_SECONDS=$(date --date="$END_TIME" +%s)
+        SECONDS=$((END_SECONDS-START_SECONDS))
+        HOUR=$(( $SECONDS/3600 )) && MIN=$(( ($SECONDS-${HOUR}*3600)/60 )) && SEC=$(( $SECONDS-${HOUR}*3600-${MIN}*60 ))
+        echo "BUILD_TIME=${HOUR}时${MIN}分${SEC}秒" >> $GITHUB_ENV
         
     - name: 上传固件文件
       if: env.UPLOAD_FIRMWARE == 'true'
@@ -210,7 +221,7 @@ jobs:
       with:
         name: OpenWrt_firmware_${{matrix.target}}_${{ env.FILE_TIME }}
         path: ./artifact/*
-
+        
     - name: 自动发布固件到 Releases
       uses: ncipollo/release-action@main
       if: env.UPLOAD_RELEASE == 'true'
