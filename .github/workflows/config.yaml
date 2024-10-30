@@ -11,28 +11,6 @@ name: 生成config文件
 
 on:
   workflow_dispatch:
-    inputs:
-
-      CACHE_BUILD:
-        description: '缓存加速'
-        required: false
-        default: 'true'
-        type: boolean
-
-      # SSH_ACTION:
-      #   description: 'SSH远程配置固件'
-      #   required: false
-      #   default: 'false'
-      #   type: boolean
-
-# 定时触发编译(1,2,5,6,8,10,12,15,16,18,20,22,25,26,28,30早3点)
-  # schedule:
-  #   - cron: 0 17 1,4,5,7,9,11,14,15,17,19,21,24,25,27,29,31 * *
-
-# 点赞☆Star触发编译
-#  watch:
-#    types: [started]
-
 
 env: 
   TZ: Asia/Shanghai
@@ -41,12 +19,10 @@ env:
   WECHAT_WORK_TOKEN: ${{ secrets.WECHAT_WORK_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  GITHUB_RELEASE: https://github.com/tzp001/OpenWrt-AutoBuild/releases
 
-jobs: 
+jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
 
     name: 编译 ${{matrix.target}}
     strategy:
@@ -56,7 +32,7 @@ jobs:
 
     steps:
     - name: 检查文件
-      uses: actions/checkout@v4
+      uses: actions/checkout@main
 
     - name: 检测脚本设置
       run: |
@@ -238,25 +214,6 @@ jobs:
       with:
         name: ${{ env.FILE_TIME1 }} 「 ${{ env.FIRMWARE_MESSAGE }} 」
         tag: ${{ env.FILE_TIME2 }}-${{matrix.target}}-${{ env.DISTRIB_REVISION }}
-        token: ${{ secrets.GIT_USER_TOKEN }}
-        body: |            
-            ★  源码 : ${{ env.REPO_URL }}
-            ★  分支 : ${{ env.REPO_BRANCH }}
-            ★  感谢源码作者无私分享！
-
-            🛠 编译版本：${{ env.DISTRIB_REVISION }}
-
-            🖥 内核版本：${{ env.KERNEL_PATCHVER }}
-
-            🎈 编译时间：${{ env.FILE_TIME1 }}
-
-            ⏰ 编译用时：${{ env.BUILD_TIME }}
-
-            🎉 [ ${{ env.FIRMWARE_MESSAGE }} ]固件下载
-
-            ━━━━━━━━━━━━━━━━━━━━
-
-            =========================================
-
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ./artifact/*
 
