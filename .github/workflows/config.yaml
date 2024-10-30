@@ -200,13 +200,16 @@ jobs:
         echo
         echo
         cat .config
-
+        echo "====================整理固件======================"
+        mkdir -p ./artifact/
+        cp -rf openwrt/.config ./artifact/${{matrix.target}}.config
+        
     - name: 上传固件文件
       if: env.UPLOAD_FIRMWARE == 'true'
       uses: actions/upload-artifact@main
       with:
         name: OpenWrt_firmware_${{matrix.target}}_${{ env.FILE_TIME }}
-        path: .config
+        path: ./artifact/*
 
     - name: 自动发布固件到 Releases
       uses: ncipollo/release-action@main
@@ -215,5 +218,5 @@ jobs:
         name: ${{ env.FILE_TIME1 }} 「 ${{ env.FIRMWARE_MESSAGE }} 」
         tag: ${{ env.FILE_TIME2 }}-${{matrix.target}}-${{ env.DISTRIB_REVISION }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: .config
+        artifacts: ./artifact/*
 
